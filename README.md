@@ -4,3 +4,5 @@
 - Bundle
 - YouCompleteMe
 - Powerline
+- python-mode
+- pathomode

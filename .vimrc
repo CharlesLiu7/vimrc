@@ -48,6 +48,9 @@
 " 映射全局按照clang风格缩进 clang-format
   map <C-F> :pyf ~/.vim/plugin/clang-format.py<CR>
   imap <C-F> <c-o>:pyf ~/.vim/plugin/clang-format.py<CR>
+" python format
+  map <C-D> :PymodeLintAuto<CR>
+  imap <C-D> <c-o>:PymodeLintAuto<CR>
 " 去空行  
   nnoremap <F2> :g/^\s*$/d<CR>  
 " C，C++ 按F5编译运行
@@ -160,6 +163,9 @@
   Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'Lokaltog/vim-powerline'
+  Plugin 'klen/python-mode'
 " All of your Plugins must be added before the following line
   call vundle#end()            " required
   filetype plugin indent on    " required
@@ -174,5 +180,7 @@
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-  Bundle 'Valloric/YouCompleteMe'
-  Bundle 'Lokaltog/vim-powerline'
+""""""""""""""""""""""""""""""""""""""""""""python-mode""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""python-mode""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  call pathogen#infect()
+  call pathogen#helptags()
