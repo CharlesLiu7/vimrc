@@ -29,7 +29,6 @@
 " 在粘贴代码时不启动自动缩进
 "	粘贴之前输入 :set paste
 "	粘贴完后恢复 :set nopaste
-" set paste
 " sublime的配色
   syntax enable
   colorscheme monokai
