@@ -1,185 +1,310 @@
-  set ruler
-" 开启行号显示
-  set number
-" 高亮显示当前行/列
-" set cursorline
-" set cursorcolumn
-" 高亮显示搜索结果
-  set hlsearch
-" 设置 gvim 显示字体
-  set guifont=YaHei\ Consolas\ Hybrid\ 11.5
-" 自动缩进
-  set autoindent
-  set cindent
-" 统一缩进为4
-  set softtabstop=4
-  set shiftwidth=4
-" Tab键的宽度
-  set tabstop=4
+" 不使用Vi兼容模式
+" no Vi-compatible
+set nocompatible
+
+"================================================================
+" 用vim-plug做插件管理系统
+" Use vim-plug for plugin manager
+"================================================================
+let mapleader="\<Space>"
+call plug#begin()
+	Plug 'Valloric/YouCompleteMe'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	Plug 'terryma/vim-multiple-cursors'
+	Plug 'easymotion/vim-easymotion'
+	Plug 'scrooloose/nerdcommenter'
+	Plug 'scrooloose/syntastic'
+	Plug 'Yggdroot/indentLine'
+	Plug 'terryma/vim-expand-region'
+	Plug 'ctrlpvim/ctrlp.vim'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+	Plug 'Chiel92/vim-autoformat'
+	Plug 'suan/vim-instant-markdown'
+	Plug 'scrooloose/nerdtree'
+	Plug 'Xuyuanp/nerdtree-git-plugin'
+call plug#end()
+
+"================================================================
+" YouCompleteMe的配置
+" Config for YouCompleteMe
+"================================================================
+let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf=0
+" 当离开插入模式时，关闭preview窗口
+" Close the preview window when you leave insert mode
+let g:ycm_autoclose_preview_window_after_insertion=1
+"autocmd InsertLeave * if pumvisible()==0|pclose|endif
+"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+" <leader>+d 跳转到定义
+" <leader>+d Jump to definition
+nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+"================================================================
+" 让vim打开时回到上次编辑的位置
+" Move to the point you edited last time when you start vim
+"================================================================
+autocmd BufReadPost *
+			\ if line("'\"")>0&&line("'\"")<=line("$") |
+			\	exe "normal g'\"" |
+			\ endif
+
+"===============================================================
+" 普通的一些配置
+" Some normal configs
+"===============================================================
+" 关闭错误提示音
+set vb
+au GuiEnter * set t_vb=
+
+" Gvim下使用右键菜单
+set mousemodel=popup
+
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-  set mouse=a
-  set selection=exclusive
-  set selectmode=mouse,key
-" 突出显示当前行
-  set cursorline
-" 总是显示状态行
-  set laststatus=2
-" 命令行（在状态行下）的高度，默认为1，这里是2
-  set cmdheight=2
-" 在粘贴代码时不启动自动缩进
-"	粘贴之前输入 :set paste
-"	粘贴完后恢复 :set nopaste
-" sublime的配色
-  syntax enable
-  colorscheme monokai
-" set backspace work  
-  set backspace=indent,eol,start
-" file coding
-  set fileencodings=utf-8,gb18030,gbk,gb2312,big5
-""""""""""""""""""""""""""""""""""""""""""""键盘命令""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""键盘命令""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set mouse=a
+set selection=exclusive
+set selectmode=mouse,key
+
+" 修正Windows下退格键删不掉东西的问题
+set backspace=indent,eol,start
+
+" 增强的搜索模式
+set incsearch
+set ignorecase smartcase
+
+" Vim默认使用的字符集
+set encoding=utf-8
+
+" 高亮光标所在行
+set cursorline
+
+" 显示相对行号
+set number
+set relativenumber
+
+" 启动代码高亮
+syntax enable
+syntax on
+
+" 关于缩进的设置
+set cindent
+set shiftwidth=4
+set tabstop=4
+set smartindent
+set autoindent
+
+" 增强命令行补全
+set wildmenu
+set wildignore=*.o,*~,*.pyc,*.class
+
+" 防止Windows下菜单乱码
+if has('win32')||has('win64')
+	source $VIMRUNTIME/delmenu.vim
+	source $VIMRUNTIME/menu.vim
+endif
+
+" 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=7
+
+" 让C++的public和private的缩进变正常
+" To get public or private lable indented
+set cinoptions=g0
+
+" 字体和字号
+" Font and font size
+if has('unix')
+	set guifont=Monaco\ 17 " English
+	set guifontwide=Microsoft\ Yahei\ 17 "Chinese
+elseif has('win32')||has('win64')
+	set guifont=Monaco:h14 " English
+	set guifontwide=Microsoft\ Yahei\ Mono:h14 "Chinese
+endif
+
+" Windows下使用DirectX进行渲染
+" Use DirectX in Windows
+if has('win32') || has('win64')
+	if (v:version == 704 && has("patch393")) || v:version > 704
+		set renderoptions=type:directx,level:0.50,
+					\gamma:1.0,contrast:0.0,geom:1,renmode:5,taamode:1
+    end
+end
+
+" 关闭菜单栏、工具栏以及滚动条
+" Disable menu, toolbar and scrollbars
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+
+" 主题配色，考虑到终端下有些配色显示不正常，故分开设置
+" Color scheme, considering that some schemes may display abnormal
+" so set them respectively
+set t_Co=256
+if has('gui_running')
+	set background=dark
+	colorscheme monokai
+else
+	colorscheme desert
+endif
+
+" 防止中文乱码
+" Prevent Chinese character from messy
+let &termencoding=&encoding
+set fileencodings=utf-8,gb18030,gbk,gb2312,big5
+
+"===============================================================
+" 好用的一些快捷键映射
+" Some nice key mappings
+"===============================================================
+" 当你忘了用sudo打开vim时，仍能保存文件
+" Allow saving of files as sudo when you forgot to start vim using sudo.
+cmap w!! %!sudo tee > /dev/null %
 " 映射全选+复制 ctrl+a
-  map <C-A> ggVG
-  map! <C-A> <Esc>ggVG
-" 映射全局缩进
-  map <F12> gg=G
-  map! <F12> <Esc>gg=G
-" 映射全局按照clang风格缩进 clang-format
-  map <C-F> :pyf ~/.vim/plugin/clang-format.py<CR>
-  imap <C-F> <c-o>:pyf ~/.vim/plugin/clang-format.py<CR>
-" python format
-  map <C-D> :PymodeLintAuto<CR>
-  imap <C-D> <c-o>:PymodeLintAuto<CR>
-" 去空行  
-  nnoremap <F2> :g/^\s*$/d<CR>  
-" C，C++ 按F5编译运行
-  map <F5> :call CompileRunGcc()<CR>
-  func! CompileRunGcc()
-    exec "w"
-    if &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "! ./%<"
-		exec "! rm %<"
-    elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
-        exec "! ./%<"
-		exec "! rm %<"
-    elseif &filetype == 'java' 
-        exec "!javac %" 
-        exec "!java %<"
-		exec "! rm %<"
-    elseif &filetype == 'sh'
-        :!./%
-    endif
-  endfunc
-" C,C++的调试
-  map <F8> :call Rungdb()<CR>
-  func! Rungdb()
-    exec "w"
-    exec "!g++ % -g -o %<"
-    exec "!gdb ./%<"
-	exec "! rm %<"
-  endfunc
+map <C-A> ggVG
+map! <C-A> <Esc>ggVG
+" <Leader>p = 从系统剪切板粘贴
+" <Leader>p = Paste from system clipboard
+map <Leader>p "+p
+" <Leader>y = 从系统剪切板复制
+" 使用visual模式来选择范围，或者不用visual模式默认选择当前行
+" <Leader>y = Copy from system clipboard
+" Use visual mode to select, or select the current line by default
+vnoremap <Leader>y "+y
+nnoremap <Leader>y V"+y
+" 对于长行，自动折行后按屏幕行移动而不是实际行
+" 对于j、k，若有命令计数，仍按实际行移动
+" When lines wrap, move according to display lines.
+" Use original j and k if there is a command count.
+noremap 0 g0
+noremap ^ g^
+noremap $ g$
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+" H = 到行首, L = 到行尾
+" H = the beginning of the line, L = the end of the line
+noremap H g^
+noremap L g$
+vnoremap L g_
+" Ctrl+l，Ctrl+h，在插入模式下左右移动光标
+" Ctrl+l，Ctrl+h，move the cursor in insert mode
+inoremap <C-l> <right>
+inoremap <C-h> <left>
+" 映射;为:从而进入命令行时不需按shift
+" Map ; to : and save a million keystrokes
+noremap ; :
+" 在命令行中使用类似Bash的快捷键
+" Bash like keys for the command line
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
 
 
-""""""""""""""""""""""""""""""""""""""""""""YouCompleteMe""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""YouCompleteMe""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YCM 补全菜单配色
-" 菜单
-  highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
-" 选中项
-  highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-" 补全功能在注释中同样有效
-  let g:ycm_complete_in_comments=1
-" 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
-  let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-  let g:ycm_confirm_extra_conf=0
-" 开启 YCM 标签补全引擎
-  let g:ycm_collect_identifiers_from_tags_files=1
-" 引入 C++ 标准库tags
-  set tags+=/data/misc/software/misc./vim/stdcpp.tags
-" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
-  inoremap <leader>; <C-x><C-o>
-" 补全内容不以分割子窗口形式出现，只显示补全列表
-  set completeopt-=preview
-" 从第一个键入字符就开始罗列匹配项
-  let g:ycm_min_num_of_chars_for_completion=1
-" 禁止缓存匹配项，每次都重新生成匹配项
-  let g:ycm_cache_omnifunc=0
-" 语法关键字补全         
-  let g:ycm_seed_identifiers_with_syntax=1
-
-" nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-" nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-" nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"===============================================================
+" <Leader>hljk 窗口间移动
+" <Leader>hljk = Move between windows
+"===============================================================
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>l <C-w>l
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
 
 
+"===============================================================
+" Ctrl Left/h & Right/l buffer间切换
+" Ctrl Left/h & Right/l cycle between buffers
+"===============================================================
+noremap <silent> <C-left> :bprev<CR>
+noremap <silent> <C-h> :bprev<CR>
+noremap <silent> <C-right> :bnext<CR>
+noremap <silent> <C-l> :bnext<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""Powerline""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""Powerline""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:Powerline_symbols = 'fancy'
-" set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim
-" These lines setup the environment to show graphics and colors correctly.
-  set nocompatible
-  set t_Co=256
-  let g:minBufExplForceSyntaxEnable = 1
-  if ! has('gui_running')
-     set ttimeoutlen=10
-     augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-     augroup END
-  endif
-  set laststatus=2 " Always display the statusline in all windows
-" set guifont=Inconsolata\ for\ Powerline:h14
-  set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline
+" <Leader>q 关闭当前buffer
+" <Leader>q Closes the current buffer
+nnoremap <silent> <Leader>q :bd<CR>
+
+" <Leader>Q 关闭当前窗口
+" <Leader>Q Closes the current window
+nnoremap <silent> <Leader>Q <C-w>c
+
+" <Leader>Ctrl+q 强制关闭当前buffer
+" <Leader>Ctrl+q Force Closes the current buffer
+nnoremap <silent> <Leader><C-q> :bd!<CR>
+
+" 切换buffer时，不让光标每次都移到第一行
+" Prevent cursor from moving to beginning of line when switching buffers
+set nostartofline
+
+"===============================================================
+" Airline的配置
+" Config for Airline
+"===============================================================
+" 一直显示Airline
+" Always appear Airline
+set laststatus=2
+" 在preview窗口中不显示airline
+" No airline in preview window
+let g:airline_exclude_preview = 1
+" 显示buffer名
+" Display all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
 
 
-""""""""""""""""""""""""""""""""""""""""""""For Bundle""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""For Bundle""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  set nocompatible              " be iMproved, required
-  filetype off                  " required
-" set the runtime path to include Vundle and initialize
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
-" let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-  Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-  Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-  Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'Lokaltog/vim-powerline'
-  Plugin 'klen/python-mode'
-" All of your Plugins must be added before the following line
-  call vundle#end()            " required
-  filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-" filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-""""""""""""""""""""""""""""""""""""""""""""python-mode""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""python-mode""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  call pathogen#infect()
-  call pathogen#helptags()
+"===============================================================
+" Easymotion的配置
+" Config for Easymotion
+"===============================================================
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+nmap s <Plug>(easymotion-overwin-f)
+"nmap s <Plug>(easymotion-overwin-f2)
+" 开启智能大小写，例如a能匹配到a和A，但A只能匹配到a
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+map <Leader>J <Plug>(easymotion-j)
+map <Leader>K <Plug>(easymotion-k)
+map <Leader>H <Plug>(easymotion-linebackward)
+map <Leader>L <Plug>(easymotion-lineforward)
+map <Leader>. <Plug>(easymotion-repeat)
+
+
+"===============================================================
+" Ultisnips的配置
+" Config for ultisnips
+"===============================================================
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+"===============================================================
+" syntastic的配置
+" Config for syntastic
+"===============================================================
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"autocmd InsertLeave * SyntasticCheck
+
+
+"===============================================================
+" vim-autoformat的配置
+" Config for vim-autoformat
+"===============================================================
+au BufWrite * :Autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:formatdef_clangformat = "'clang-format -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=\"{BasedOnStyle: LLVM, AlignTrailingComments: true, '.(&textwidth ? 'ColumnLimit: '.&textwidth.', ' : '').(&expandtab ? 'UseTab: Never, IndentWidth: '.shiftwidth() : 'UseTab: ForIndentation, IndentWidth: 4').'}\"'"
+
+
+"===============================================================
+" NERDTree的配置
+" Config for NERDTree
+"===============================================================
+noremap <F2> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
