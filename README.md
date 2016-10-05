@@ -1,8 +1,14 @@
 # vimrc : Charles's private vim configuration
 
+Reference: [zhuohua's vimrc](github.com/lizhuohua/vimrc)
 
-- Bundle
+Shows:
+
+![](github.com/CharlesLiu7/vimrc/raw/master/show.png)
+
+
+- ~~Bundle~~ vim-plug
 - YouCompleteMe
-- Powerline
+- ~~Powerline~~ airline
 - python-mode
-- pathomode
+- 未完待续
