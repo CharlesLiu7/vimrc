@@ -1,10 +1,10 @@
 # vimrc : Charles's private vim configuration
 
-Reference: [zhuohua's vimrc](github.com/lizhuohua/vimrc)
+Reference: [zhuohua's vimrc](https://github.com/lizhuohua/vimrc)
 
 Shows:
 
-![](http://github.com/CharlesLiu7/vimrc/raw/master/show.png)
+![](https://github.com/CharlesLiu7/vimrc/raw/master/show.png)
 
 
 - ~~Bundle~~ vim-plug
