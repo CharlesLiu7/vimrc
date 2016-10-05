@@ -4,7 +4,7 @@ Reference: [zhuohua's vimrc](github.com/lizhuohua/vimrc)
 
 Shows:
 
-![](github.com/CharlesLiu7/vimrc/raw/master/show.png)
+![](http://github.com/CharlesLiu7/vimrc/raw/master/show.png)
 
 
 - ~~Bundle~~ vim-plug
