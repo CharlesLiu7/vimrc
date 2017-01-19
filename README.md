@@ -1,6 +1,9 @@
-# vimrc : Charles's private vim configuration
+# .vimrc : Charles's private vim configuration
 
-Reference: [zhuohua's vimrc](https://github.com/lizhuohua/vimrc)
+Reference:
+
+> [zhuohua's vimrc](https://github.com/lizhuohua/vimrc)
+> commits: d23bb080c17799e634c819011898c51b6a4fff07
 
 Shows:
 
