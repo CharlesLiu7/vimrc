@@ -54,9 +54,9 @@ autocmd BufReadPost *
 " 普通的一些配置
 " Some normal configs
 "===============================================================
-" 关闭错误提示音
-set vb
-au GuiEnter * set t_vb=
+" 关闭错误提示音和闪屏
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 " Gvim下使用右键菜单
 set mousemodel=popup
@@ -155,10 +155,40 @@ endif
 let &termencoding=&encoding
 set fileencodings=utf-8,gb18030,gbk,gb2312,big5
 
+
+" 启用Vim自带的matchit插件
+runtime macros/matchit.vim
+
+" 提高终端下的性能
+" inprove the speed of vim in ternimal
+set ttyfast
+set ttyscroll=3
+set lazyredraw
+
 "===============================================================
 " 好用的一些快捷键映射
 " Some nice key mappings
 "===============================================================
+" C，C++ 按F5编译运行
+  map <F5> :call CompileRunGcc()<CR>
+  func! CompileRunGcc()
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+		exec "! rm %<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+		exec "! rm %<"
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!java %<"
+		exec "! rm %<"
+    elseif &filetype == 'sh'
+        :!./%
+    endif
+  endfunc
 " 当你忘了用sudo打开vim时，仍能保存文件
 " Allow saving of files as sudo when you forgot to start vim using sudo.
 cmap w!! %!sudo tee > /dev/null %
