@@ -185,40 +185,45 @@ set synmaxcol=128
 " Some nice key mappings
 "===============================================================
 " C，C++ 按F5编译运行
-  map <F5> :call CompileRunGcc()<CR>
-  func! CompileRunGcc()
-    exec "w"
-    if &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "! ./%<"
-		exec "! rm %<"
-    elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
-        exec "! ./%<"
-		exec "! rm %<"
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!java %<"
-		exec "! rm %<"
-    elseif &filetype == 'sh'
-        :!./%
-    endif
-  endfunc
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+  exec "w"
+  if &filetype == 'c'
+      exec "!g++ % -o %<"
+      exec "! ./%<"
+exec "! rm %<"
+  elseif &filetype == 'cpp'
+      exec "!g++ % -o %<"
+      exec "! ./%<"
+exec "! rm %<"
+  elseif &filetype == 'java'
+      exec "!javac %"
+      exec "!java %<"
+exec "! rm %<"
+  elseif &filetype == 'sh'
+      :!./%
+  endif
+endfunc
+
 " 当你忘了用sudo打开vim时，仍能保存文件
 " Allow saving of files as sudo when you forgot to start vim using sudo.
 cmap w!! %!sudo tee > /dev/null %
+
 " 映射全选+复制 ctrl+a
 map <C-A> ggVG
 map! <C-A> <Esc>ggVG
+
 " <Leader>p = 从系统剪切板粘贴
 " <Leader>p = Paste from system clipboard
 map <Leader>p "+p
+
 " <Leader>y = 从系统剪切板复制
 " 使用visual模式来选择范围，或者不用visual模式默认选择当前行
 " <Leader>y = Copy from system clipboard
 " Use visual mode to select, or select the current line by default
 vnoremap <Leader>y "+y
 nnoremap <Leader>y V"+y
+
 " 对于长行，自动折行后按屏幕行移动而不是实际行
 " 对于j、k，若有命令计数，仍按实际行移动
 " When lines wrap, move according to display lines.
@@ -228,58 +233,67 @@ noremap ^ g^
 noremap $ g$
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
 " H = 到行首, L = 到行尾
 " H = the beginning of the line, L = the end of the line
 noremap H g^
 noremap L g$
 vnoremap L g_
+
 " Ctrl+l，Ctrl+h，在插入模式下左右移动光标
 " Ctrl+l，Ctrl+h，move the cursor in insert mode
 inoremap <C-l> <right>
 inoremap <C-h> <left>
+
 " 映射;为:从而进入命令行时不需按shift
 " Map ; to : and save a million keystrokes
 noremap ; :
+
 " 在命令行中使用类似Bash的快捷键
 " Bash like keys for the command line
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 cnoremap <C-K> <C-U>
 
+" 让Ctrl+p和Ctrl+n也像上下键一样对历史记录进行过滤
+" cnoremap <C-p> <Up>
+" cnoremap <C-n> <Down>
 
 "===============================================================
 " <Leader>hljk 窗口间移动
-" <Leader>hljk = Move between windows
 "===============================================================
+" 垂直、水平划分窗口
+nnoremap <silent> <Leader>v :vsplit<CR>
+nnoremap <silent> <Leader>s :split<CR>
+
+" 窗口间移动
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>l <C-w>l
 nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
 
+" <Leader>Q 关闭当前窗口
+nnoremap <silent> <Leader>q <C-w>c
 
 "===============================================================
 " Ctrl Left/h & Right/l buffer间切换
-" Ctrl Left/h & Right/l cycle between buffers
 "===============================================================
+" 如果当前buffer被修改了，在离开时自动将其设为隐藏
+set hidden
+
+" buffer间切换
 noremap <silent> <C-left> :bprev<CR>
 noremap <silent> <C-h> :bprev<CR>
 noremap <silent> <C-right> :bnext<CR>
 noremap <silent> <C-l> :bnext<CR>
 
 " <Leader>q 关闭当前buffer
-" <Leader>q Closes the current buffer
-nnoremap <silent> <Leader>q :bd<CR>
-
-" <Leader>Q 关闭当前窗口
-" <Leader>Q Closes the current window
-nnoremap <silent> <Leader>Q <C-w>c
+nnoremap <silent> <C-q> :bd<CR>
 
 " <Leader>Ctrl+q 强制关闭当前buffer
-" <Leader>Ctrl+q Force Closes the current buffer
 nnoremap <silent> <Leader><C-q> :bd!<CR>
 
 " 切换buffer时，不让光标每次都移到第一行
-" Prevent cursor from moving to beginning of line when switching buffers
 set nostartofline
 
 "===============================================================
