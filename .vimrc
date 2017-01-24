@@ -169,7 +169,7 @@ set lazyredraw
 " 编辑文本文件时的配置
 "===============================================================
 " 编辑文本类型时启用拼写检查
-autocmd FileType text,tex,markdown setlocal spell spelllang=en,cjk
+autocmd FileType text,plaintex,markdown setlocal spell spelllang=en,cjk
 
 " 折行时自动缩进
 set breakindent
@@ -191,15 +191,18 @@ func! CompileRunGcc()
   if &filetype == 'c'
       exec "!g++ % -o %<"
       exec "! ./%<"
-exec "! rm %<"
+  exec "! rm %<"
   elseif &filetype == 'cpp'
       exec "!g++ % -o %<"
       exec "! ./%<"
-exec "! rm %<"
+  exec "! rm %<"
   elseif &filetype == 'java'
       exec "!javac %"
       exec "!java %<"
-exec "! rm %<"
+  exec "! rm %<"
+  elseif &filetype == 'python'
+      :!python ./%
+  endif
   elseif &filetype == 'sh'
       :!./%
   endif
@@ -251,9 +254,9 @@ noremap ; :
 
 " 在命令行中使用类似Bash的快捷键
 " Bash like keys for the command line
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-cnoremap <C-K> <C-U>
+"cnoremap <C-A> <Home>
+"cnoremap <C-E> <End>
+"cnoremap <C-K> <C-U>
 
 " 让Ctrl+p和Ctrl+n也像上下键一样对历史记录进行过滤
 " cnoremap <C-p> <Up>
@@ -287,7 +290,7 @@ noremap <silent> <C-h> :bprev<CR>
 noremap <silent> <C-right> :bnext<CR>
 noremap <silent> <C-l> :bnext<CR>
 
-" <Leader>q 关闭当前buffer
+" Ctrl+q 关闭当前buffer
 nnoremap <silent> <C-q> :bd<CR>
 
 " <Leader>Ctrl+q 强制关闭当前buffer
