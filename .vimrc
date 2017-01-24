@@ -169,7 +169,7 @@ set lazyredraw
 " 编辑文本文件时的配置
 "===============================================================
 " 编辑文本类型时启用拼写检查
-autocmd FileType text,tex setlocal spell spelllang=en,cjk
+autocmd FileType text,tex,markdown setlocal spell spelllang=en,cjk
 
 " 折行时自动缩进
 set breakindent
