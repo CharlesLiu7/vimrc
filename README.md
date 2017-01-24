@@ -18,18 +18,25 @@
 - Move to the point you edited last time when you start vim
 - Allow saving of files as sudo when you forgot to start vim using sudo.
 - ...
-- `ctrl+a` select all
+- `<F5>`, for c, c++, java, python, shell script codes, instantly execute the code.
+- `Ctrl+a` select all
 - `<Leader>p` Paste from system clipboard
 - `<Leader>y` Copy from system clipboard
 - When lines wrap, move according to display lines. Use original j and k if there is a command count.
 - `H` the beginning of the line, `L` the end of the line
 - `Ctrl+l`, `Ctrl+h`, move the cursor in insert mode
 - Map ; to : and save a million keystrokes
-- ??? Bash like keys for the command line
-- ??? `<Leader>hljki` Move between windows
-- `<Leader>Q` Closes the current window
+
+### windows
+
+- `<Leader>vs` split the window
+- `<Leader>hljk` Move between windows
+- `<Leader>q` Closes the current window
+
+### buffers
+
 - `Ctrl Left/h & Right/l` cycle between buffers
-- `<Leader>q` Closes the current buffer
+- `Ctrl+q` Closes the current buffer
 - `<Leader>Ctrl+q` Force Closes the current buffer
 
 ### ~~Bundle~~ vim-plug
@@ -43,7 +50,7 @@
 [Github:Valloric/YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
 
 - set the `leader` = `\<space>`
-- It includes a file at `~/.vim/ycm_extra_conf.py`, and this file configer the YouCompleteMe plug, I also comment one line to enable C++11 code-completion.
+- It includes a file at `~/.vim/ycm_extra_conf.py`, and this file configuration the YouCompleteMe plug, I also comment one line to enable C++11 code-completion.
 - Close the preview window when you leave insert mode
 - `<leader>+d` Jump to definition
 
@@ -78,15 +85,23 @@ EasyMotion provides a much simpler way to use some motions in vim. It takes the 
 
 ### nerdcommenter
 
-[Github:scrooloose/nerdcommenter]
+[Github:scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 
 ### syntastic
 
 [Github:scrooloose/syntastic](https://github.com/vim-syntastic/syntastic)
 
-[Github:Yggdroot/indentLine]
-[Github:terryma/vim-expand-regiod]
-[Github:ctrlpvim/ctrlp.vim]
+### indentLine
+
+[Github:Yggdroot/indentLine](https://github.com/Yggdroot/indentLine)
+
+### vim-expand-regiod
+
+[Github:terryma/vim-expand-regiod](https://github.com/terryma/vim-expand-regiod)
+
+### ctrlp
+
+[Github:ctrlpvim/ctrlp.vim](https://github.com/ctrlp.vim)
 
 ### ultisnips
 
@@ -96,19 +111,23 @@ UltiSnips is the ultimate solution for snippets in Vim. It has tons of features 
 
 [Usage reference](http://mednoter.com/UltiSnips.html)
 
-[Github:honza/vim-snippets]
+## vim-snippets
+
+[Github:honza/vim-snippets](https://github.com/honza/vim-snippets)
 
 ### vim-autoformat
 
 [Github:Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat)
 
-- clang-format for C+_+
+- clang-format for C++
+- autopep8 for python
 
-[Github:suan/vim-instant-markdown]
+### vim-instant-markdown
+
+[Github:suan/vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
 
 ### nerdtree
 
 [Github:scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
 
-[Github:Xuyuanp/nerdtree-git-plugin]
-
+[Github:Xuyuanp/nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin)
