@@ -49,7 +49,7 @@
 - `Ctrl+q` Closes the current buffer
 - `<Leader>Ctrl+q` Force Closes the current buffer
 
-### ~~Bundle~~ vim-plug
+### <i class="icon-ok"></i>~~Bundle~~ vim-plug
 
 [GitHub:junegunn/vim-plug](https://github.com/junegunn/vim-plug)
 
@@ -96,6 +96,13 @@ EasyMotion provides a much simpler way to use some motions in vim. It takes the 
 ### nerdcommenter
 
 [GitHub:scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
+
+Here is a [usage DOC](http://www.wklken.me/posts/2015/06/07/vim-plugin-nerdcommenter.html)
+
+- `<leader>cc`   加注释
+- `<leader>cu`   解开注释
+- `<leader>c<space>`  加上/解开注释, 智能判断
+- `<leader>cy`   先复制, 再注解(p可以进行黏贴)
 
 ### syntastic
 
