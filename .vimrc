@@ -27,21 +27,6 @@ call plug#begin()
 call plug#end()
 
 "================================================================
-" YouCompleteMe的配置
-" Config for YouCompleteMe
-"================================================================
-let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf=0
-" 当离开插入模式时，关闭preview窗口
-" Close the preview window when you leave insert mode
-let g:ycm_autoclose_preview_window_after_insertion=1
-"autocmd InsertLeave * if pumvisible()==0|pclose|endif
-"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-" <leader>+d 跳转到定义
-" <leader>+d Jump to definition
-nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-"================================================================
 " 让vim打开时回到上次编辑的位置
 " Move to the point you edited last time when you start vim
 "================================================================
@@ -298,6 +283,21 @@ nnoremap <silent> <Leader><C-q> :bd!<CR>
 " 切换buffer时，不让光标每次都移到第一行
 set nostartofline
 
+"================================================================
+" YouCompleteMe的配置
+" Config for YouCompleteMe
+"================================================================
+let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf=0
+" 当离开插入模式时，关闭preview窗口
+" Close the preview window when you leave insert mode
+let g:ycm_autoclose_preview_window_after_insertion=1
+"autocmd InsertLeave * if pumvisible()==0|pclose|endif
+"autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+" <leader>+d 跳转到定义
+" <leader>+d Jump to definition
+nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 "===============================================================
 " Airline的配置
 " Config for Airline
@@ -311,7 +311,6 @@ let g:airline_exclude_preview = 1
 " 显示buffer名
 " Display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
-
 
 "===============================================================
 " Easymotion的配置
@@ -329,18 +328,12 @@ map <Leader>H <Plug>(easymotion-linebackward)
 map <Leader>L <Plug>(easymotion-lineforward)
 map <Leader>. <Plug>(easymotion-repeat)
 
-
 "===============================================================
-" Ultisnips的配置
-" Config for ultisnips
+" nerdcommenter的配置
+" Config for nerdcommenter
 "===============================================================
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
 
 "===============================================================
 " syntastic的配置
@@ -352,6 +345,16 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "autocmd InsertLeave * SyntasticCheck
 
+"===============================================================
+" Ultisnips的配置
+" Config for ultisnips
+"===============================================================
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 "===============================================================
 " vim-autoformat的配置

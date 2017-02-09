@@ -27,7 +27,7 @@
 - `Ctrl+l`, `Ctrl+h`, move the cursor in insert mode
 - Map ; to : and save a million keystrokes
 
-### spell checking
+### :heavy_check_mark: spell checking
 
 [usage for new one](http://blog.leanote.com/post/mybaby101@126.com/%E5%88%A9%E7%94%A8Vim%E7%9A%84%E6%8B%BC%E5%86%99%E6%A3%80%E6%9F%A5%E5%99%A8%EF%BC%8C%E6%9F%A5%E6%89%BE%E5%B9%B6%E6%9B%B4%E6%AD%A3%E6%8B%BC%E5%86%99%E9%94%99%E8%AF%AF)
 
@@ -37,25 +37,25 @@
 - `zug` : 撤销将单词加入词典
 - `z=` : 拼写建议
 
-### windows
+### :heavy_check_mark: windows
 
 - `<Leader>vs` split the window
 - `<Leader>hljk` Move between windows
 - `<Leader>q` Closes the current window
 
-### buffers
+### :heavy_check_mark: buffers
 
 - `Ctrl Left/h & Right/l` cycle between buffers
 - `Ctrl+q` Closes the current buffer
 - `<Leader>Ctrl+q` Force Closes the current buffer
 
-### <i class="icon-ok"></i>~~Bundle~~ vim-plug
+### :heavy_check_mark: ~~Bundle~~ vim-plug
 
 [GitHub:junegunn/vim-plug](https://github.com/junegunn/vim-plug)
 
 - including one file at `~/.vim/autoload/plug.vim`
 
-### YouCompleteMe
+### :heavy_check_mark: YouCompleteMe
 
 [GitHub:Valloric/YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
 
@@ -64,7 +64,7 @@
 - Close the preview window when you leave insert mode
 - `<leader>+d` Jump to definition
 
-### ~~Powerline~~ airline
+### :heavy_check_mark: ~~Powerline~~ airline
 
 [GitHub:vim-airline/vim-airline](https://github.com/vim-airline/vim-airline)
 
@@ -93,7 +93,7 @@ EasyMotion provides a much simpler way to use some motions in vim. It takes the 
 - Turn on case insensitive feature
 - `<leader><leader>s` search jump
 
-### nerdcommenter
+### :heavy_check_mark: nerdcommenter
 
 [GitHub:scrooloose/nerdcommenter](https://github.com/scrooloose/nerdcommenter)
 
@@ -128,11 +128,11 @@ UltiSnips is the ultimate solution for snippets in Vim. It has tons of features 
 
 [Usage reference](http://mednoter.com/UltiSnips.html)
 
-## vim-snippets
+### vim-snippets
 
 [GitHub:honza/vim-snippets](https://github.com/honza/vim-snippets)
 
-### vim-autoformat
+### :heavy_check_mark: vim-autoformat
 
 [GitHub:Chiel92/vim-autoformat](https://github.com/Chiel92/vim-autoformat)
 
