@@ -260,7 +260,7 @@ nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
 
 " <Leader>Q 关闭当前窗口
-nnoremap <silent> <Leader>q <C-w>c
+nnoremap <silent> <Leader>Q <C-w>c
 
 "===============================================================
 " Ctrl Left/h & Right/l buffer间切换
@@ -275,10 +275,7 @@ noremap <silent> <C-right> :bnext<CR>
 noremap <silent> <C-l> :bnext<CR>
 
 " Ctrl+q 关闭当前buffer
-nnoremap <silent> <C-q> :bd<CR>
-
-" <Leader>Ctrl+q 强制关闭当前buffer
-nnoremap <silent> <Leader><C-q> :bd!<CR>
+nnoremap <silent> <Leader>q :bd<CR>
 
 " 切换buffer时，不让光标每次都移到第一行
 set nostartofline
@@ -373,3 +370,5 @@ noremap <F3> :Autoformat<CR>
 "===============================================================
 noremap <F2> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+

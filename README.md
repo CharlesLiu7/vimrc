@@ -20,6 +20,7 @@
 - ...
 - `<F5>`, for c, c++, java, python, shell script codes, instantly execute the code.
 - `Ctrl+a` select all
+- Arch 本身的vim不支持clipboard，所以安装了Arch的Gvim就支持了
 - `<Leader>p` Paste from system clipboard
 - `<Leader>y` Copy from system clipboard
 - When lines wrap, move according to display lines. Use original j and k if there is a command count.
@@ -41,13 +42,12 @@
 
 - `<Leader>vs` split the window
 - `<Leader>hljk` Move between windows
-- `<Leader>q` Closes the current window
+- `<Leader>Q` Closes the current window
 
 ### :heavy_check_mark: buffers
 
 - `Ctrl Left/h & Right/l` cycle between buffers
-- `Ctrl+q` Closes the current buffer
-- `<Leader>Ctrl+q` Force Closes the current buffer
+- `<Leader>q` Closes the current buffer
 
 ### :heavy_check_mark: ~~Bundle~~ vim-plug
 
