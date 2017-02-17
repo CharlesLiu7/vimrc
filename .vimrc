@@ -365,6 +365,12 @@ let g:autoformat_autoindent = 0
 noremap <F3> :Autoformat<CR>
 
 "===============================================================
+" vim-instant-markdown的配置
+" Config for instant markdown
+"===============================================================
+let g:instant_markdown_autostart = 0
+
+"===============================================================
 " NERDTree的配置
 " Config for NERDTree
 "===============================================================

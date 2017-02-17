@@ -139,9 +139,11 @@ UltiSnips is the ultimate solution for snippets in Vim. It has tons of features 
 - clang-format for C++
 - autopep8 for python
 
-### vim-instant-markdown
+### :heavy_check_mark: vim-instant-markdown
 
 [GitHub:suan/vim-instant-markdown](https://github.com/suan/vim-instant-markdown)
+
+- `:InstantMarkdownPreview` to open the preview window in browser
 
 ### nerdtree
 
