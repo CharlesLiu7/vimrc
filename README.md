@@ -15,22 +15,20 @@
 
 ### Normal ones and useful key mapping
 
-- Move to the point you edited last time when you start vim
-- Allow saving of files as sudo when you forgot to start vim using sudo.
-- ...
+- macros/matchit.vim enhances the `%` match function, it will match the pair tags when editing the files such as html, CSS...
 - `<F5>`, for c, c++, java, python, shell script codes, instantly execute the code.
+- `:w!!` Allow saving of files as sudo when you forgot to start vim using sudo.
 - `Ctrl+a` select all
 - Arch 本身的vim不支持clipboard，所以安装了Arch的Gvim就支持了
+- `<Leader>y` Copy to system clipboard
 - `<Leader>p` Paste from system clipboard
-- `<Leader>y` Copy from system clipboard
-- When lines wrap, move according to display lines. Use original j and k if there is a command count.
 - `H` the beginning of the line, `L` the end of the line
 - `Ctrl+l`, `Ctrl+h`, move the cursor in insert mode
 - Map ; to : and save a million keystrokes
 
 ### :heavy_check_mark: spell checking
 
-[usage for new one](http://blog.leanote.com/post/mybaby101@126.com/%E5%88%A9%E7%94%A8Vim%E7%9A%84%E6%8B%BC%E5%86%99%E6%A3%80%E6%9F%A5%E5%99%A8%EF%BC%8C%E6%9F%A5%E6%89%BE%E5%B9%B6%E6%9B%B4%E6%AD%A3%E6%8B%BC%E5%86%99%E9%94%99%E8%AF%AF)
+[Guidance for new one](http://blog.leanote.com/post/mybaby101@126.com/%E5%88%A9%E7%94%A8Vim%E7%9A%84%E6%8B%BC%E5%86%99%E6%A3%80%E6%9F%A5%E5%99%A8%EF%BC%8C%E6%9F%A5%E6%89%BE%E5%B9%B6%E6%9B%B4%E6%AD%A3%E6%8B%BC%E5%86%99%E9%94%99%E8%AF%AF)
 
 - `]s` : 将光标移到下一个拼写错误处
 - `[s` : 将光标移到上一个拼写错误处
