@@ -89,7 +89,12 @@ EasyMotion provides a much simpler way to use some motions in vim. It takes the 
 [Usage Reference](http://www.wklken.me/posts/2015/06/07/vim-plugin-easymotion.html)
 
 - Turn on case insensitive feature
-- `<leader><leader>s` search jump
+- `s` search mode
+- `<Leader>K` line up mode
+- `<Leader>J` line down mode
+- `<Leader>L` line forward mode
+- `<Leader>H` line backward mode
+- `<Leader>.` repeat mode
 
 ### :heavy_check_mark: nerdcommenter
 
