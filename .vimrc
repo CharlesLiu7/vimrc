@@ -169,16 +169,16 @@ set synmaxcol=128
 " 好用的一些快捷键映射
 " Some nice key mappings
 "===============================================================
-" C，C++ 按F5编译运行
-map <F5> :call CompileRunGcc()<CR>
+" C，C++ 按<leader>r编译运行
+map <leader>r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
   exec "w"
   if &filetype == 'c'
-      exec "!g++ % -o %<"
+      exec "!gcc % -o %<"
       exec "! ./%<"
   exec "! rm %<"
   elseif &filetype == 'cpp'
-      exec "!g++ % -o %<"
+      exec "!g++ % -o %< -std=c++11"
       exec "! ./%<"
   exec "! rm %<"
   elseif &filetype == 'java'
@@ -362,7 +362,7 @@ let g:formatters_cpp = ['my_custom_clang']
 let g:formatters_c = ['my_custom_clang']
 let g:autoformat_autoindent = 0
 " au BufWrite * :Autoformat
-noremap <F3> :Autoformat<CR>
+noremap <leader>f :Autoformat<CR>
 
 "===============================================================
 " vim-instant-markdown的配置
@@ -374,7 +374,7 @@ let g:instant_markdown_autostart = 0
 " NERDTree的配置
 " Config for NERDTree
 "===============================================================
-noremap <F2> :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 
