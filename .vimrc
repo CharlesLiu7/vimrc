@@ -14,7 +14,7 @@ call plug#begin()
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'easymotion/vim-easymotion'
 	Plug 'scrooloose/nerdcommenter'
-	Plug 'scrooloose/syntastic'
+	Plug 'w0rp/ale'
 	Plug 'Yggdroot/indentLine'
 	Plug 'terryma/vim-expand-region'
 	Plug 'ctrlpvim/ctrlp.vim'
@@ -24,6 +24,7 @@ call plug#begin()
 	Plug 'suan/vim-instant-markdown'
 	Plug 'scrooloose/nerdtree'
 	Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'tpope/vim-surround'
 call plug#end()
 
 "================================================================
@@ -150,6 +151,18 @@ set ttyfast
 set ttyscroll=3
 set lazyredraw
 
+" 搜索后按ESC自动关闭高亮显示
+" 在终端下会有延迟，GVim正常
+" https://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
+if has('gui_running')
+  nnoremap <silent> <esc> :noh<return><esc>
+else
+  augroup no_highlight
+    autocmd TermResponse * nnoremap <silent> <esc> :noh<return><esc>
+	autocmd TermResponse * nnoremap <esc>^[ <esc>^[
+  augroup END
+end
+ 
 "===============================================================
 " 编辑文本文件时的配置
 "===============================================================
@@ -162,8 +175,8 @@ set breakindent
 " 折行时不会把一个单词切开
 set linebreak
 
-" 只对一行的前128列做语法高亮，提升响应速度
-set synmaxcol=128
+" 只对一行的前512列做语法高亮，提升响应速度
+set synmaxcol=512
 
 "===============================================================
 " 好用的一些快捷键映射
@@ -294,6 +307,11 @@ let g:ycm_autoclose_preview_window_after_insertion=1
 " <leader>+d 跳转到定义
 " <leader>+d Jump to definition
 nnoremap <leader>d :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" CTRL-O和CTRL-I来前后跳转
+" <leader>+i 跳转到头文件
+nnoremap <leader>i :YcmCompleter GoToInclude<CR>
+" <leader>+t 获取变量类型
+nnoremap <leader>t :YcmCompleter GetType<CR>
 
 "===============================================================
 " Airline的配置
@@ -308,6 +326,8 @@ let g:airline_exclude_preview = 1
 " 显示buffer名
 " Display all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
+" 使用powerline的字体，需要打好字体补丁
+" let g:airline_powerline_fonts = 1
 
 "===============================================================
 " Easymotion的配置
@@ -333,14 +353,9 @@ map <Leader>. <Plug>(easymotion-repeat)
 let g:NERDSpaceDelims = 1
 
 "===============================================================
-" syntastic的配置
-" Config for syntastic
+" ale的配置
 "===============================================================
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"autocmd InsertLeave * SyntasticCheck
+let g:ale_linters = {'c': [], 'cpp': []}
 
 "===============================================================
 " Ultisnips的配置
@@ -374,7 +389,7 @@ let g:instant_markdown_autostart = 0
 " NERDTree的配置
 " Config for NERDTree
 "===============================================================
-noremap <leader>n :NERDTreeToggle<CR>
+noremap <silent> <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 

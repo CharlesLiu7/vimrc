@@ -107,9 +107,9 @@ Here is a [usage DOC](http://www.wklken.me/posts/2015/06/07/vim-plugin-nerdcomme
 - `<leader>c<space>`  加上/解开注释, 智能判断
 - `<leader>cy`   先复制, 再注解(p可以进行黏贴)
 
-### syntastic
+### ale
 
-[GitHub:scrooloose/syntastic](https://github.com/vim-syntastic/syntastic)
+[GitHub:w0rp/ale](https://github.com/w0rp/ale)
 
 ### indentLine
 
@@ -153,3 +153,7 @@ UltiSnips is the ultimate solution for snippets in Vim. It has tons of features 
 [GitHub:scrooloose/nerdtree](https://github.com/scrooloose/nerdtree)
 
 [GitHub:Xuyuanp/nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin)
+
+### vim-surround
+
+[GitHub:tpope/vim-surround](https://github.com/tpope/vim-surround)
