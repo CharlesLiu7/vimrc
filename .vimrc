@@ -220,6 +220,9 @@ map! <C-A> <Esc>ggVG
 " <Leader>p = Paste from system clipboard
 map <Leader>p "+p
 
+" 设置 PASTE 模式切换的快捷键
+set pastetoggle=<Leader>x
+
 " <Leader>y = 从系统剪切板复制
 " 使用visual模式来选择范围，或者不用visual模式默认选择当前行
 " <Leader>y = Copy from system clipboard
