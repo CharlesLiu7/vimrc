@@ -178,6 +178,9 @@ set linebreak
 " 只对一行的前512列做语法高亮，提升响应速度
 set synmaxcol=512
 
+" 打开文件是默认不折叠代码
+set foldlevelstart=99
+
 "===============================================================
 " 好用的一些快捷键映射
 " Some nice key mappings
@@ -392,4 +395,5 @@ let g:instant_markdown_autostart = 0
 noremap <silent> <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-
+" filetype
+autocmd BufEnter *.ejs :setlocal filetype=html
