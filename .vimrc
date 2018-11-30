@@ -221,7 +221,7 @@ map! <C-A> <Esc>ggVG
 map <Leader>p "+p
 
 " 设置 PASTE 模式切换的快捷键
-set pastetoggle=<Leader>x
+set pastetoggle=<Leader>xx
 
 " <Leader>y = 从系统剪切板复制
 " 使用visual模式来选择范围，或者不用visual模式默认选择当前行
@@ -400,3 +400,16 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " filetype
 autocmd BufEnter *.ejs :setlocal filetype=html
+
+"===============================================================
+" 配置文件头
+" File headers https://blog.csdn.net/luzhenrong45/article/details/53021748
+"===============================================================
+" 当新建 .py等文件时自动调用PythonHeader 函数
+autocmd BufNewFile *.py exec ":call PythonHeader()" 
+func PythonHeader()
+	call setline(1, "# -*- coding: UTF-8 -*- ")
+	call setline(2, "__author__ = 'Charles'")
+	call setline(3, "if __name__ == '__main__':")
+	call setline(4, "    pass")
+endfunc
