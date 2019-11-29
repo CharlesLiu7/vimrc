@@ -25,6 +25,7 @@ call plug#begin()
 	Plug 'scrooloose/nerdtree'
 	Plug 'Xuyuanp/nerdtree-git-plugin'
 	Plug 'tpope/vim-surround'
+	Plug 'nathangrigg/vim-beancount'
 call plug#end()
 
 "================================================================
@@ -205,6 +206,8 @@ func! CompileRunGcc()
       :! python ./%
   elseif &filetype == 'sh'
       :!./%
+  elseif &filetype == 'go'
+      :! go run %
   endif
 endfunc
 
@@ -413,3 +416,7 @@ func PythonHeader()
 	call setline(3, "if __name__ == '__main__':")
 	call setline(4, "    pass")
 endfunc
+
+"===============================================================
+" Beancount 自动补全
+"===============================================================
